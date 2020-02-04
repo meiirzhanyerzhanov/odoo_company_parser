@@ -1,0 +1,68 @@
+<odoo>
+    <data>
+        <record id="companies_kanban_view" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+
+                <xpath expr="//div[@class='oe_button_box']" position="inside">
+                    <button type="object" name="get_company_data" string="Refresh Data" class="btn-link"/>
+                </xpath>
+
+                <xpath expr="//field[@name='vat']" position="after">
+
+                    <field name="region"/>
+                    <field name="nas_punkt"/>
+                    <field name="otrasl"/>
+                    <field name="vid_deyatelnosti"/>
+                    <field name="ur_address"/>
+                    <field name="fact_address"/>
+                    <field name="sector_econ"/>
+                    <field name="org_right_form"/>
+                    <field name="form_sobs"/>
+                    <field name="status_pred"/>
+                    <field name="bin"/>
+                    <field name="year_form"/>
+                    <field name="status_platelshik"/>
+                    <field name="klaster"/>
+                    <field name="url"/>
+
+
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="action_make_testing" model="ir.actions.server">
+            <field name="name">Collect Data</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="state">code</field>
+            <field name="code">action = model.data_collector()</field>
+        </record>
+
+
+
+<!--        <record id="action_server_module_immediate_install" model="ir.actions.server">-->
+<!--            <field name="name">Install Modules</field>-->
+<!--            <field name="type">ir.actions.server</field>-->
+<!--            <field name="model_id" ref="model_ir_module_module" />-->
+<!--            <field name="binding_model_id" ref="model_ir_module_module" />-->
+<!--            <field name="state">code</field>-->
+<!--            <field name="code">records.button_immediate_install()</field>-->
+<!--        </record>-->
+
+
+                <menuitem
+                    id="collect_data"
+                    name="Collect Data"
+                    web_icon="crm,static/description/icon.png"
+                    action="action_make_testing"
+                    parent="crm.crm_menu_root"
+                    sequence="99"/>
+
+
+    </data>
+</odoo>
